@@ -20,10 +20,8 @@ Rolodex.main = function main() {
   Rolodex.getPath('mainPage.mainPane').append() ;
 
   // Step 2. Set the content property on your primary controller.
-  // This will make your app come alive!
-
-  // TODO: Set the content property on your primary controller
-  // ex: Rolodex.contactsController.set('content',Rolodex.contacts);
+  var contacts = Rolodex.store.find(Rolodex.Contact);
+  Rolodex.contactsController.set('content', contacts);
 
 } ;
 

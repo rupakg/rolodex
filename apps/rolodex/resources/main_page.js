@@ -25,23 +25,21 @@ Rolodex.mainPage = SC.Page.design({
         value:   'Rolodex - your contacts are on a roll...'
       })
 
-    }),
+    }), // end of headerView
 
     mainView: SC.ScrollView.design({
       hasHorizontalScroller: NO,
-      layout: { top: 36, bottom: 32, left: 0},
-      childViews: 'contactlistView contactdetailView'.w(),
+      layout: { top: 36, bottom: 32, left: 0, right: 0},
       backgroundColor: 'white',
 
-      contactlistView: SC.ListView.design({
-        layout: { left: 5, width: 100 },
-        backgroundColor: 'blue'
-      }),
-      contactdetailView: SC.View.design({
-        layout: { right: 5, width: 200 }
+      contentView: SC.ListView.design({
+        contentBinding: 'Rolodex.contactsController.arrangedObjects',
+        selectionBinding: 'Rolodex.contactsController.selection',
+        contentValueKey: "fname",
+        rowHeight: 21
       })
 
-    }),
+    }),  // end of mainView
 
     footerView: SC.ToolbarView.design({
       layout: { bottom: 0, left: 0, right: 0, height: 32 },
@@ -63,8 +61,9 @@ Rolodex.mainPage = SC.Page.design({
         fontWeight: SC.BOLD_WEIGHT,
         value:   'Copyright 2002-2010 Webintellix. All Right Reserved.'
       })
-    })
+        
+    }) // end of footerView
       
-  })
+  })  // end of mainPane
 
-});
+});  // end of mainPage
