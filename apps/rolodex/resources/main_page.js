@@ -15,7 +15,7 @@ Rolodex.mainPage = SC.Page.design({
 
     headerView: SC.ToolbarView.design({
       layout: { top: 0, left: 0, right: 0, height: 36 },
-      childViews: 'titleView'.w(),
+      childViews: 'titleView btnAddContact'.w(),
       anchorLocation: SC.ANCHOR_TOP,
       // defines the caption with a label view
       titleView: SC.LabelView.design({
@@ -23,6 +23,12 @@ Rolodex.mainPage = SC.Page.design({
         controlSize: SC.LARGE_CONTROL_SIZE,
         fontWeight: SC.BOLD_WEIGHT,
         value:   'Rolodex - your contacts are on a roll...'
+      }),
+      btnAddContact: SC.ButtonView.design({
+        layout: { centerY: 0, height: 24, right: 12, width: 150 },
+        title: "Add Contact",
+        target: "Rolodex.contactsController",
+        action: "addContact"
       })
 
     }), // end of headerView
@@ -36,7 +42,9 @@ Rolodex.mainPage = SC.Page.design({
         contentBinding: 'Rolodex.contactsController.arrangedObjects',
         selectionBinding: 'Rolodex.contactsController.selection',
         contentValueKey: "fname",
-        rowHeight: 21
+        rowHeight: 21,
+        canEditContent: YES,
+        canDeleteContent: YES
       })
 
     }),  // end of mainView
@@ -47,11 +55,11 @@ Rolodex.mainPage = SC.Page.design({
       anchorLocation: SC.ANCHOR_BOTTOM,
       // defines the status with a label view
       statusView: SC.LabelView.design({
-        layout: { centerY: 0, height: 18, left: 20, right: 20},
+        layout: { centerY: 0, height: 18, left: 20, width: 200},
         controlSize: SC.SMALL_CONTROL_SIZE,
         textAlign: SC.ALIGN_LEFT,
         fontWeight: SC.BOLD_WEIGHT,
-        value:   "Contacts: "
+        valueBinding: "Contacts.contactsController.summary"
       }),
       // defines the copyright with a label view
       copyrightView: SC.LabelView.design({

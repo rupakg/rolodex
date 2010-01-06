@@ -20,7 +20,11 @@ Rolodex.main = function main() {
   Rolodex.getPath('mainPage.mainPane').append() ;
 
   // Step 2. Set the content property on your primary controller.
-  var contacts = Rolodex.store.find(Rolodex.Contact);
+
+  // added a query to sort
+  var query = SC.Query.local(Rolodex.Contact, { orderBy: 'fname, lname' });
+  // use the above query instead of just using find(Rolodex.Contact)
+  var contacts = Rolodex.store.find(query);
   Rolodex.contactsController.set('content', contacts);
 
 } ;
