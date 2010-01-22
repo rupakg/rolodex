@@ -11,44 +11,92 @@ Rolodex.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
-    childViews: 'headerView mainView footerView'.w(),
+    childViews: 'headerView contactDetailsView separatorView contactListView contactToolbarView footerView'.w(),
 
     headerView: SC.ToolbarView.design({
       layout: { top: 0, left: 0, right: 0, height: 36 },
-      childViews: 'titleView btnAddContact'.w(),
+      childViews: 'titleView'.w(),
       anchorLocation: SC.ANCHOR_TOP,
       // defines the caption with a label view
       titleView: SC.LabelView.design({
         layout: { centerY: 0, height: 24, left: 20, width: 400 },
         controlSize: SC.LARGE_CONTROL_SIZE,
         fontWeight: SC.BOLD_WEIGHT,
-        value:   'Rolodex - your contacts are on a roll...'
-      }),
-      btnAddContact: SC.ButtonView.design({
-        layout: { centerY: 0, height: 24, right: 12, width: 150 },
-        title: "Add Contact",
-        target: "Rolodex.contactsController",
-        action: "addContact"
+        value: 'Rolodex - your contacts are on a roll...'
       })
 
     }), // end of headerView
 
-    mainView: SC.ScrollView.design({
+    contactDetailsView: SC.ScrollView.design(SC.Border, {
       hasHorizontalScroller: NO,
-      layout: { top: 36, bottom: 32, left: 0, right: 0},
+      layout: { top: 50, bottom: 500, left: 300, right: 300},
+      childViews: 'lblfname txtfname'.w(),
+      backgroundColor: 'white',
+
+      lblfname: SC.LabelView.design({
+        layout: { centerY: 0, left: 20, width: 200 },
+        value:   'First Name: '
+      }),
+      txtfname: SC.TextFieldView.design({
+        layout: { centerY: 0, left: 20, width: 200 },
+        hint:   'Enter the First Name',
+        value: "fname"
+      })
+
+    }),  // end of contactDetailsView
+
+    separatorView: SC.SeparatorView.design({
+        layout: { top: 502, left: 300, right: 300, height: 5},
+        backgroundColor: 'gray'
+
+    }),  // end of separatorView
+
+    contactListView: SC.ScrollView.design({
+      hasHorizontalScroller: NO,
+      layout: { top: 513, bottom: 150, left: 300, right: 300},
       backgroundColor: 'white',
 
       contentView: SC.ListView.design({
         contentBinding: 'Rolodex.contactsController.arrangedObjects',
         selectionBinding: 'Rolodex.contactsController.selection',
+        //  contentValueKey: "formattedItem",  // figure out how to make it work with addContact
         contentValueKey: "fname",
         rowHeight: 21,
+        showAlternatingRows: YES,
         canEditContent: YES,
         canDeleteContent: YES
       })
 
-    }),  // end of mainView
+    }),  // end of contactListView
 
+    contactToolbarView: SC.View.design(SC.Border, {
+        layout: { left: 300, right: 300, bottom: 80, height: 60 },
+        //classNames: ['toolbar'],
+        backgroundColor: 'black',
+        childViews: [
+
+          SC.ButtonView.design({
+            layout: { centerY: 0, left: 15, height: 30, width: 130 },
+            //icon: 'add-icon',
+            title: "Add Contact",
+            //classNames: ['toolbar-label'],
+            toolTip: "Add a new contact to your rolodex",
+            target: 'Rolodex.contactsController',
+            action: 'addContact'
+          }),
+
+          SC.ButtonView.design({
+            layout: { centerY: 0, left: 170, height: 30, width: 130 },
+            //icon: 'delete-icon',
+            title: "Delete Contact",
+            //classNames: ['toolbar-label'],
+            toolTip: "Delete the selected contact from your rolodex",
+            target: 'Rolodex.contactsController',
+            action: 'deleteContact'
+          })
+        ] 
+    }),
+    
     footerView: SC.ToolbarView.design({
       layout: { bottom: 0, left: 0, right: 0, height: 32 },
       childViews: 'statusView copyrightView'.w(),
@@ -59,7 +107,7 @@ Rolodex.mainPage = SC.Page.design({
         controlSize: SC.SMALL_CONTROL_SIZE,
         textAlign: SC.ALIGN_LEFT,
         fontWeight: SC.BOLD_WEIGHT,
-        valueBinding: "Contacts.contactsController.summary"
+        valueBinding: "Rolodex.contactsController.summary"
       }),
       // defines the copyright with a label view
       copyrightView: SC.LabelView.design({
