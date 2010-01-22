@@ -22,9 +22,9 @@ Rolodex.main = function main() {
   // Step 2. Set the content property on your primary controller.
 
   // added a query to sort
-  var query = SC.Query.local(Rolodex.Contact, { orderBy: 'fname, lname' });
+  //var query = SC.Query.local(Rolodex.Contact, { orderBy: 'fname, lname' });
   // use the above query instead of just using find(Rolodex.Contact)
-  var contacts = Rolodex.store.find(query);
+  var contacts = Rolodex.store.find(Rolodex.CONTACTS_QUERY);
   Rolodex.contactsController.set('content', contacts);
 
 } ;

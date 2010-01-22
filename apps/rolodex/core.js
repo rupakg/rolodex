@@ -20,8 +20,15 @@ Rolodex = SC.Application.create(
   // of your model data.  You can also set a data source on this store to
   // connect to a backend server.  The default setup below connects the store
   // to any fixtures you define.
-  store: SC.Store.create().from(SC.Record.fixtures)
-  
+
+  // default fixtures datasource
+  //store: SC.Store.create().from(SC.Record.fixtures)
+
+  // Custom datasource defined as a Rails app.
+  store: SC.Store.create({
+         commitRecordsAutomatically: YES     // This will cause the store to notice any changes to our data and automatically notify the data source.
+  }).from('Rolodex.ContactsDataSource')
+
   // TODO: Add global constants or singleton objects needed by your app here.
 
 }) ;
