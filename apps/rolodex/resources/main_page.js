@@ -29,7 +29,8 @@ Rolodex.mainPage = SC.Page.design({
 
     contactDetailsView: SC.ScrollView.design(SC.Border, {
       hasHorizontalScroller: NO,
-      layout: { top: 50, bottom: 500, left: 300, right: 300},
+      layout: { top: 50, height: 350, left: 300, right: 300},
+      anchorLocation: SC.ANCHOR_BOTTOM,
       childViews: 'lblfname txtfname'.w(),
       backgroundColor: 'white',
 
@@ -46,14 +47,16 @@ Rolodex.mainPage = SC.Page.design({
     }),  // end of contactDetailsView
 
     separatorView: SC.SeparatorView.design({
-        layout: { top: 502, left: 300, right: 300, height: 5},
+        layout: { top: 410, left: 300, right: 300, height: 5},
+        anchorLocation: SC.ANCHOR_TOP,
         backgroundColor: 'gray'
 
     }),  // end of separatorView
 
     contactListView: SC.ScrollView.design({
       hasHorizontalScroller: NO,
-      layout: { top: 513, bottom: 150, left: 300, right: 300},
+      anchorLocation: SC.ANCHOR_BOTTOM,
+      layout: { top: 418, height: 485, bottom: 95, left: 300, right: 300},
       backgroundColor: 'white',
 
       contentView: SC.ListView.design({
@@ -70,8 +73,9 @@ Rolodex.mainPage = SC.Page.design({
     }),  // end of contactListView
 
     contactToolbarView: SC.View.design(SC.Border, {
-        layout: { left: 300, right: 300, bottom: 80, height: 60 },
-        //classNames: ['toolbar'],
+        layout: { left: 300, right: 300, bottom: 37, height: 50 },
+        classNames: ['contact-toolbar'],
+        anchorLocation: SC.ANCHOR_BOTTOM,
         backgroundColor: 'black',
         childViews: [
 
@@ -79,17 +83,17 @@ Rolodex.mainPage = SC.Page.design({
             layout: { centerY: 0, left: 15, height: 30, width: 130 },
             //icon: 'add-icon',
             title: "Add Contact",
-            //classNames: ['toolbar-label'],
+            classNames: ['contact-toolbar-button'],
             toolTip: "Add a new contact to your rolodex",
             target: 'Rolodex.contactsController',
             action: 'addContact'
           }),
 
           SC.ButtonView.design({
-            layout: { centerY: 0, left: 170, height: 30, width: 130 },
+            layout: { centerY: 0, left: 155, height: 30, width: 130 },
             //icon: 'delete-icon',
             title: "Delete Contact",
-            //classNames: ['toolbar-label'],
+            classNames: ['contact-toolbar-button'],
             toolTip: "Delete the selected contact from your rolodex",
             target: 'Rolodex.contactsController',
             action: 'deleteContact'

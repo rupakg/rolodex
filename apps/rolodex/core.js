@@ -27,7 +27,7 @@ Rolodex = SC.Application.create(
   // Custom datasource defined as a Rails app.
   store: SC.Store.create({
          commitRecordsAutomatically: YES     // This will cause the store to notice any changes to our data and automatically notify the data source.
-  }).from('Rolodex.ContactsDataSource')
+  }).from('Rolodex.ContactDataSource')
 
   // TODO: Add global constants or singleton objects needed by your app here.
 

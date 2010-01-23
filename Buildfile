@@ -1,6 +1,6 @@
 # ===========================================================================
 # Project:   Rolodex
-# Copyright: ©2010 My Company, Inc.
+# Copyright: ©2010 Webintellix.
 # ===========================================================================
 
 # Add initial buildfile information here
