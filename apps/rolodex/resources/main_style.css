@@ -1,6 +1,6 @@
 .contact-toolbar-button {
-    background: url(images/gray_btn_tile.png) repeat-x
+    background: url('images/gray_btn_tile.png') repeat-x;
 }
 .contact-toolbar {
-    background: url(images/blue_bgnd.png) repeat-x
+    background: url(images/blue_bgnd.png) repeat-x;
 }
