@@ -1,0 +1,3 @@
+[submodule "contacts"]
+	path = contacts
+	url = git@github.com:rupakg/contacts.git
