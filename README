@@ -12,4 +12,8 @@ Features
 
 
 
+Submodules
+==========
 
+Added Rails app 'contacts' datasource as a submodule using command:
+git submodule add git@github.com:rupakg/contacts.git contacts
